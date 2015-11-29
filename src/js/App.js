@@ -1,5 +1,7 @@
+//ES6 Modules http://www.2ality.com/2014/09/es6-modules-final.html
+
 import React, { Component } from 'react';
-import { NICE, SUPER_NICE } from './colors';
+import data from './data';
 
 class Counter extends Component {
   constructor(props) {
@@ -20,7 +22,7 @@ class Counter extends Component {
 
   render() {
     return (
-      <h1 style={{ color: this.props.color }}>
+      <h1 >
         Counter ({this.props.increment}): {this.state.counter}
       </h1>
     );
@@ -31,8 +33,9 @@ export class App extends Component {
   render() {
     return (
       <div>
-        <Counter increment={1} color={NICE} />
-        <Counter increment={5} color={SUPER_NICE} />
+        
+        <Counter increment={1} />
+        <Counter increment={5} />
       </div>
     );
   }

@@ -1,11 +1,16 @@
+//CSS and SASS setup https://christianalfoni.github.io/react-webpack-cookbook/Loading-CSS.html
+
 var path = require('path');
 var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'eval',
   entry: [
     'webpack-hot-middleware/client',
-    './src/index'
+    './index.html',
+    './src/js/index',
+    './src/css/styles'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
@@ -14,13 +19,23 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new HtmlWebpackPlugin()
   ],
   module: {
     loaders: [{
       test: /\.js$/,
       loaders: ['babel'],
       include: path.join(__dirname, 'src')
+    },
+    {
+      test: /\.scss$/,
+      loader: 'style-loader!css-loader!sass-loader',
+      include: path.join(__dirname, 'src')
+    },
+    {
+      test: /\.html$/,
+      loader: "file?name=[name].[ext]",
     }]
   }
 };
