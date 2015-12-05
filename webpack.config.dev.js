@@ -3,6 +3,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   devtool: 'eval',
@@ -19,8 +20,7 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
-    new HtmlWebpackPlugin()
+    new webpack.NoErrorsPlugin()
   ],
   module: {
     loaders: [{
@@ -30,7 +30,7 @@ module.exports = {
     },
     {
       test: /\.scss$/,
-      loader: 'style-loader!css-loader!sass-loader',
+      loader: "style-loader!css-loader!sass-loader",
       include: path.join(__dirname, 'src')
     },
     {
